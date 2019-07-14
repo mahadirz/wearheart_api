@@ -1,3 +1,5 @@
+import re
+
 import crypto
 import sys
 
@@ -9,6 +11,7 @@ from Crypto.Cipher import AES
 import base64
 import json
 import requests
+import pendulum
 
 # Padding for the input string --not
 # related to encryption itself.
@@ -50,12 +53,26 @@ class WearHeart:
         @todo update docs
         """
         self.encryption_key = "wo.szzhkjyxgs.20"
-        self.last_request_dt = self._reset_last_request_dt()
+        self.last_request_dt = None
         self.uid = uid
         self.profile = {}
 
         # @todo figure out this constant
         self.c = "ctl000016"
+
+        # censored the uid
+        self.is_censored = True
+
+        self.last_response = None
+
+        self._reset_last_request_dt()
+
+    def set_is_censored(self, bool=True):
+        """
+        :param bool:
+        :return:
+        """
+        self.is_censored = bool
 
     def set_uid(self, uid):
         """
@@ -118,10 +135,14 @@ class WearHeart:
         }
 
         response = requests.request("POST", url, data=payload, headers=headers).json()
+        self.last_response = response
         # Update last request datetime
         self._reset_last_request_dt()
         if 'result' in response:
-            return json.loads(AESCipher(self.encryption_key).decrypt(response['result']))
+            decrypted = AESCipher(self.encryption_key).decrypt(response['result'])
+            if self.is_censored:
+                decrypted = re.sub(r'"c_uid":\s*?"(\d+)"', '"c_uid":"-"', decrypted)
+            return json.loads(decrypted)
         return None
 
     def get_health_data_by_page(self, date=None, page=1, pagesize=10):
