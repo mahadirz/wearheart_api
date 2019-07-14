@@ -55,7 +55,7 @@ Yeah, pretty straight forward. It's AES.
 
 ## How do I use the SDK or the API?
 
-Please view the example in [Example of API usage.ipynb](Example of API usage.ipynb)
+Please view the example in [Example of API usage.ipynb]
 
 
 ## TODO
