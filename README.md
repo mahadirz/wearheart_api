@@ -53,6 +53,14 @@ Well, at this point I was pretty sure the line 32 is encryption key. So It's jus
 
 Yeah, pretty straight forward. It's AES.
 
+## How do I use the SDK or the API?
+
+Please view the example in [Example of API usage.ipynb](Example of API usage.ipynb)
+
 
 ## TODO
-* I bought HM-10 to perform MITM on the bluetooth level
+
+Given the limitation of wearheart itself such as no raw hrv computed and the result isn't written to ihealth, plus the data safety issues, I'm planning to create another app that can read and send command directly to the watch via bluetooth. I bought HM-10 to perform MITM on the bluetooth level. So stay tuned.
+
+
+<img width=300 src="images/IMG_2573.JPG?raw=true"/>
