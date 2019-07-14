@@ -5,5 +5,8 @@ My obsession with ECG haven't worn off yet, from the last project I use AD8232 m
 
 <img width=500 src="images/IMG_2572.JPG?raw=true"/>
 
+https://eu.nihonkohden.com/en/innovativetechnologies/pwtt/howitworks.html
+()[https://eu.nihonkohden.com/en/innovativetechnologies/pwtt/howitworks.html]
+
 
 
